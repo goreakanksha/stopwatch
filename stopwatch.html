@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>stop watch</title>
+	<style type="text/css">
+		body{
+			display: flex;
+
+		}
+		.windowshell{
+			background-color: rgba(127,246,255,0a.849);
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			justify-content:center ;
+		}
+		.outershell{
+			border-radius: 5%;
+			background-color: whitesmoke;
+			width: 80%;
+			padding: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.userinputscreen{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.input{
+			margin: 10px;
+			font-size: large;
+			background-color: black;
+			color: white;
+			padding: 10px;
+			border: solid 4px grey;
+			border-style: groove;
+			display: flex;
+			align-items: center;
+		}
+		.button{
+			margin: 20px;
+			color: rgb(255,255,255);
+			background-color:rgb(168, 50, 133);
+			border-radius: 10%;
+			padding: 20px;
+			font-size: larger;
+			font-family: 'Franklin Gothic Medium ','Arial Narrow',Arial,sans-serif;
+		}
+		.milli{
+			font-size: large;
+		}
+		.timerscreen{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.timer{
+			padding: 10px;
+		}
+		.reset{
+
+		}
+		label{
+			font-variant: small-caps;
+			font-family: fantasy;
+			font-size: xx-large;
+		}
+
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+	var intervalVariable=undefined;
+	var timeleft=0;
+	var totaltime=0;
+	function startTimer()
+	{
+		intervalVariable=setInterval(updatTime,10);
+	}
+	function resetTimer()
+	{
+		stoptimer();
+		timeleft=-10;
+		updatTime();
+	}
+	function stoptimer()
+	{
+		clearInterval(intervalVariable);
+	}
+	function updatTime()
+	{
+		timeleft=timeleft+10;
+		let timers=document.getElementById("timers");
+		let timerms=document.getElementById("timerms");
+		let milli=timeleft%1000;
+		timers.innerHTML=Math.floor(timeleft/1000);
+		timerms.innerHTML=Math.floor(timeleft/10);
+		timers.style.color="green";
+		timerms.style.color="red";
+		
+	}
+</script>
+	<div class="windowshell">
+		<div class="outershell">
+			<div class="timerscreen" id="timerscreen">
+				<label>stop watch</label>
+				<div>
+					<label class="timer" id="timers">0</label>
+					<label class="timer" id="timers">seconds</label>
+					<label class="timer milli" id="timerms">00</label>
+					<label class="timer milli" id="timerms">milisecond</label>
+				</div>
+				<div class="buttonholder">
+					<button class="reset button" onclick="startTimer()">start</button>
+					<button class="reset button" onclick="stoptimer()">stop</button>
+					<button class="reset button" onclick="resetTimer()">Reset</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
